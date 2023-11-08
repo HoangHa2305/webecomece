@@ -156,8 +156,9 @@
                   <td></td>
                   <td>
                     <h5>Thành tiền: </h5><br>
+                    <h5>Phí giao hàng: </h5><br>
                     <h5>Thuế VAT (10%): </h5><br>
-                    <h5>Tổng cộng: </h5>
+                    <h5>Tổng cộng: </h5>                   
                   </td>
                   <td>
                     <h5>
@@ -169,36 +170,25 @@
                     <br>
                     <h5>
                       <?php
+                        $ship = $subtotal * 0.02;  
+                        $check_data_cart=$ct->check_cart();
+                        if($check_data_cart){
+                          echo $fm->format_currency($ship);
+                        }else{
+                          echo '0';
+                        }
+                      ?>đ
+                    </h5>
+                    <br>
+                    <h5>
+                      <?php
                         $vat = $subtotal * 0.1;
                         echo  $fm->format_currency($vat);
 
-                        $gtotal = $subtotal+$vat;
+                        $gtotal = $subtotal+$vat+$ship;
                       ?>₫
                     </h5><br>
                     <h5><?php echo $fm->format_currency($gtotal) ?>₫</h5>
-                  </td>
-                </tr>
-                <tr class="shipping_area">
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <h5>Phí giao hàng: </h5>
-                  </td>
-                  <td>
-                    <div class="shipping_box">
-                      <ul class="list">
-                        <li>
-                          <a href="#">Nội thành: 0₫</a>
-                        </li>
-                        <li>
-                          <a href="#">Ngoại tỉnh: 20₫</a>
-                        </li>
-                        <li>
-                          <a href="#">Nước ngoài: 100₫</a>
-                        </li>
-                      </ul>
-                      <a class="gray_btn" href="#">Update Details</a>
-                    </div>
                   </td>
                 </tr>
                 <tr class="out_button_area">
